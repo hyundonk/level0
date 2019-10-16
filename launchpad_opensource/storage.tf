@@ -37,7 +37,7 @@ resource "azurerm_storage_account" "stg" {
 
 resource "azurerm_storage_container" "tfstate" {
   name                  = "tfstate"
-  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  # resource_group_name   = "${azurerm_resource_group.rg.name}"
   storage_account_name  = "${azurerm_storage_account.stg.name}"
   container_access_type = "private"
 }
