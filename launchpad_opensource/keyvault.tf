@@ -1,7 +1,7 @@
 data "azurerm_client_config" "current" {}
 
 resource "random_string" "kv_name" {
-  length  = 23 - length(random_string.prefix.result)
+  length  = var.prefix == null ? 23 - length(random_string.prefix.result) : 23 - length(var.prefix) 
   special = false
   upper   = false
   number  = true
@@ -15,7 +15,8 @@ resource "random_string" "kv_middle" {
 }
 
 locals {
-    kv_name = "${random_string.prefix.result}${random_string.kv_middle.result}${random_string.kv_name.result}"
+    kv_name = var.prefix == null ? "${random_string.prefix.result}${random_string.kv_middle.result}${random_string.kv_name.result}" : "${var.prefix}${random_string.kv_middle.result}${random_string.kv_name.result}"
+
 }
 
 

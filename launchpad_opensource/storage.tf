@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "${random_string.prefix.result}-terraform-state"
+  name     = var.prefix == null ? "${random_string.prefix.result}-terraform-state" : "${var.prefix}-terraform-state"
   location = var.location
 
     tags = {

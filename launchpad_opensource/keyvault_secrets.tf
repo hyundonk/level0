@@ -44,7 +44,7 @@ resource "azurerm_key_vault_secret" "tfstate_prefix" {
     provider      = azurerm.sp_tfstate
     
     name         = "tfstate-prefix"
-    value        = random_string.prefix.result
+    value        = var.prefix == null ? random_string.prefix.result : var.prefix
     key_vault_id = azurerm_key_vault.tfstate.id
 }
 

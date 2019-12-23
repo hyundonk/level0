@@ -1,5 +1,5 @@
 resource "azuread_application" "devops" {
-  name                       = "${random_string.prefix.result}devops"
+  name                       = var.prefix == null ? "${random_string.prefix.result}devops" : "${var.prefix}devops"
 }
 
 resource "azuread_service_principal" "devops" {

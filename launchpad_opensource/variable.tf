@@ -9,3 +9,8 @@ variable "location" {
 variable "tf_name" {
     description = "Name of the terraform state in the blob storage"
 }
+
+variable "prefix" {
+    description = "4 digit prefix"
+    default = null
+}

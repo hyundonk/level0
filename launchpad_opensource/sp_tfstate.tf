@@ -1,5 +1,5 @@
 resource "azuread_application" "tfstate" {
-  name                       = "${random_string.prefix.result}tfstate"
+  name                       = var.prefix == null ? "${random_string.prefix.result}tfstate" : "${var.prefix}tfstate"
 }
 
 resource "azuread_service_principal" "tfstate" {
@@ -23,7 +23,8 @@ resource "azurerm_user_assigned_identity" "tfstate" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 
-  name = "${random_string.prefix.result}tfstate_msi"
+  name = var.prefix == null ? "${random_string.prefix.result}tfstate_msi" : "${var.prefix}tfstate_msi"
+
 }
 
 resource "azurerm_role_assignment" "tfstate_role1" {

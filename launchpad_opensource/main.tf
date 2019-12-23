@@ -21,4 +21,5 @@ resource "random_string" "prefix" {
 
 locals {
   tfstate-blob-name = var.tf_name
+  prefix            = var.prefix
 }
